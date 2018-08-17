@@ -1,4 +1,3 @@
-import { withTracker } from 'meteor/react-meteor-data'
 import connectMeteor from 'react-redux-meteor-data'
 import { withRouter } from 'react-router-dom'
 
