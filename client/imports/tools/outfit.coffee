@@ -13,7 +13,7 @@ connectTracker = () ->
 
 connectTransfer = (transfer, props) ->
   onGetUser: (user) ->
-    dispatch
+    transfer
       type: 'GET_USER'
       load: user
 
