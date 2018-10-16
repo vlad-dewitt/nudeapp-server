@@ -8,16 +8,16 @@ export default (state = origin, action) ->
     when 'CHANGE_WELCOME_MESSAGE'
       switch state.welcomeMessage
         when "Welcome!"
+          window.speechSynthesis.speak new SpeechSynthesisUtterance "Fuck you!"
           state = {
             origin...
             welcomeMessage: "Fuck you!"
           }
-          window.speechSynthesis.speak new SpeechSynthesisUtterance "Fuck you!"
         else
+          window.speechSynthesis.speak new SpeechSynthesisUtterance "Welcome!"
           state = {
             origin...
             welcomeMessage: "Welcome!"
           }
-          window.speechSynthesis.speak new SpeechSynthesisUtterance "Welcome!"
 
     else state
