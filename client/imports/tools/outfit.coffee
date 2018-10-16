@@ -11,10 +11,9 @@ connectTracker = () ->
   collectionName = {}
 
 connectTransfer = (transfer, props) ->
-  onGetUser: (user) ->
+  changeWelcomeMessage: ->
     transfer
-      type: 'GET_USER'
-      load: user
+      type: 'CHANGE_WELCOME_MESSAGE'
 
 
 

@@ -12,10 +12,10 @@ App = class extends Component
 
 
   render: ->
-    <div id='App'>
-      <h1 id='welcome'>Welcome!</h1>
+    <div id='App' onClick={ @props.changeWelcomeMessage }>
+      <h1 id='welcome'>{ @props.app.welcomeMessage }</h1>
     </div>
 
 
 
-export default outfit(App)
+export default outfit App
