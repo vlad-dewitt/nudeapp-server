@@ -12,10 +12,12 @@ export default (state = origin, action) ->
             origin...
             welcomeMessage: "Fuck you!"
           }
+          window.speechSynthesis.speak new SpeechSynthesisUtterance "Fuck you!"
         else
           state = {
             origin...
             welcomeMessage: "Welcome!"
           }
+          window.speechSynthesis.speak new SpeechSynthesisUtterance "Welcome!"
 
     else state
