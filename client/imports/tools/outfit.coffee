@@ -1,24 +1,14 @@
 import connectMeteor from 'react-redux-meteor-data'
 import { withRouter } from 'react-router-dom'
 
-
-
-connectStates = (state) ->
-  app: state.app
-
-connectTracker = () ->
-  # collectionName = collectionName.find({}).fetch()
-  collectionName = {}
-
-connectTransfer = (transfer, props) ->
-  changeWelcomeMessage: ->
-    transfer
-      type: 'CHANGE_WELCOME_MESSAGE'
+import States from '../reducers/states'
+import Tracker from '../reducers/tracker'
+import Transfer from '../reducers/transfer'
 
 
 
 outfit = (component) ->
-  withRouter(connectMeteor(connectTracker, connectStates, connectTransfer)(component))
+  withRouter connectMeteor(Tracker, States, Transfer)(component)
 
 
 

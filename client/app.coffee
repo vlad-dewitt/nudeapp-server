@@ -16,12 +16,12 @@ import App from './imports/kit'
 
 
 history = createHistory()
-middleware = routerMiddleware(history)
+middleware = routerMiddleware history
 
 if Meteor.isDevelopment
-  store = createStore(reducers, composeWithDevTools(applyMiddleware(middleware, thunk)))
+  store = createStore reducers, composeWithDevTools applyMiddleware middleware, thunk
 else
-  store = createStore(reducers, applyMiddleware(middleware, thunk))
+  store = createStore reducers, applyMiddleware middleware, thunk
 
 
 
@@ -30,4 +30,4 @@ Meteor.startup ->
       <Router history={ history }>
         <App/>
       </Router>
-    </Provider>, document.getElementById('root')
+    </Provider>, document.getElementById 'root'

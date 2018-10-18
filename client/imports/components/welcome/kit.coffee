@@ -2,11 +2,8 @@ import React, { Component } from 'react'
 import { Route, Switch, Redirect } from 'react-router-dom'
 import { outfit } from '/client/imports/tools/outfit'
 
-import Welcome from './components/welcome/kit'
 
-
-
-App = class extends Component
+Welcome = class extends Component
   constructor: (props) ->
     super props
     @state = {}
@@ -14,10 +11,10 @@ App = class extends Component
 
 
   render: =>
-    <div id='App' onClick={ @props.changeWelcomeMessage }>
-      <Welcome />
+    <div id='Welcome'>
+      <h1>{ @props.app.welcomeMessage }</h1>
     </div>
 
 
 
-export default outfit App
+export default outfit Welcome

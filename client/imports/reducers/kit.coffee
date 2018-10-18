@@ -9,4 +9,4 @@ reducers =
 
 
 
-export default combineReducers(reducers)
+export default combineReducers reducers
