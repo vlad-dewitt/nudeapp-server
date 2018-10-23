@@ -18,6 +18,8 @@ import App from './imports/kit'
 history = createHistory()
 middleware = routerMiddleware history
 
+
+
 if Meteor.isDevelopment
   store = createStore reducers, composeWithDevTools applyMiddleware middleware, thunk
 else
