@@ -3,6 +3,7 @@ import { Route, Switch, Redirect } from 'react-router-dom'
 import { outfit } from '/client/imports/tools/outfit'
 
 
+
 Welcome = class extends Component
   constructor: (props) ->
     super props
