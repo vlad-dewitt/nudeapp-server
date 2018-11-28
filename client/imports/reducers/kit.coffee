@@ -1,12 +1,11 @@
 import { combineReducers } from 'redux'
+import { connectRouter } from 'connected-react-router'
 
 import app from './app'
 
 
 
-reducers =
-  app: app
-
-
-
-export default combineReducers reducers
+export default (history) ->
+  combineReducers
+    router: connectRouter(history)
+    app: app

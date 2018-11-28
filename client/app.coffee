@@ -2,9 +2,8 @@ import { Meteor } from 'meteor/meteor'
 import React from 'react'
 import { render } from 'react-dom'
 import { Provider } from 'react-redux'
-import { ConnectedRouter as Router, routerMiddleware } from 'react-router-redux'
-import createHistory from 'history/createBrowserHistory'
-import { browserHistory } from 'react-router'
+import { ConnectedRouter as Router, routerMiddleware } from 'connected-react-router'
+import { createBrowserHistory } from 'history'
 import { createStore, applyMiddleware } from 'redux'
 import thunk from 'redux-thunk'
 import { composeWithDevTools } from 'redux-devtools-extension'
@@ -15,15 +14,14 @@ import App from './imports/kit'
 
 
 
-history = createHistory()
-middleware = routerMiddleware history
+history = createBrowserHistory()
 
 
 
 if Meteor.isDevelopment
-  store = createStore reducers, composeWithDevTools applyMiddleware middleware, thunk
+  store = createStore reducers(history), composeWithDevTools applyMiddleware routerMiddleware(history), thunk
 else
-  store = createStore reducers, applyMiddleware middleware, thunk
+  store = createStore reducers(history), applyMiddleware routerMiddleware(history), thunk
 
 
 
