@@ -1,0 +1,9 @@
+export default Hybrid = (state, actions, props) ->
+
+  {
+    props...
+    app: {
+      state.app...
+      actions.app...
+    }
+  }

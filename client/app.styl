@@ -1,4 +1,5 @@
-@import 'typographic'
+@import './imports/ui/shape/global.styl'
+@import './imports/ui/shape/fonts.styl'
 
 
 
@@ -10,6 +11,7 @@ body
   margin 0
   padding 0
   overflow hidden
+  background white
 
   > #root, & > #root > #App
     position relative
@@ -18,7 +20,9 @@ body
     height 100%
 
   > #root > #App
+    overflow auto
 
-    @import './imports/shape/main.styl'
-
-    @import './imports/kit.styl'
+    > #layout
+      min-width 960px
+      min-height 640px
+      overflow hidden
