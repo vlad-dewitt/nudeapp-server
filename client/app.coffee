@@ -19,14 +19,14 @@ history = createBrowserHistory()
 
 
 if Meteor.isDevelopment
-  store = createStore redux(history), composeWithDevTools applyMiddleware routerMiddleware(history), thunk
+  @STORE = createStore redux(history), composeWithDevTools applyMiddleware routerMiddleware(history), thunk
 else
-  store = createStore redux(history), applyMiddleware routerMiddleware(history), thunk
+  @STORE = createStore redux(history), applyMiddleware routerMiddleware(history), thunk
 
 
 
 Meteor.startup ->
-  render <Provider store={ store }>
+  render <Provider store={ STORE }>
       <Router history={ history } >
         <App/>
       </Router>
