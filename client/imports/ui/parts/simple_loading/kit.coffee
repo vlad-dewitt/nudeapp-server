@@ -26,9 +26,13 @@ SimpleLoading = class extends Component
           config = @props.app.config
           if config
             anim.pause()
-            @props.app.setAppLoaded()
+            Ambry.call 'setAppLoaded'
 
-    @props.app.getInitConfig()
+    Meteor.call 'getInitConfig', null, (err, res) ->
+      if err
+        console.log err
+      else
+        Ambry.call 'setInitConfig', res.data
 
 
 
@@ -39,4 +43,4 @@ SimpleLoading = class extends Component
 
 
 
-export default outfit SimpleLoading
+export default Hybrid SimpleLoading

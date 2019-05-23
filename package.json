@@ -19,6 +19,7 @@
     "randomatic": "^3.1.1",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
+    "react-loadable": "^5.5.0",
     "react-redux": "^6.0.1",
     "react-redux-meteor-data": "^0.5.8",
     "react-router": "^4.3.1",

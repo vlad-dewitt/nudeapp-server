@@ -8,11 +8,16 @@ Welcome = class extends Component
 
 
 
+  changeWelcomeMessage: =>
+    Ambry.call 'changeWelcomeMessage'
+
+
+
   render: =>
     <div id='Welcome'>
-      <h1>{ @props.app.config.welcomeMessage }</h1>
+      <h1 onClick={ @changeWelcomeMessage }>{ @props.app.config.welcomeMessage }</h1>
     </div>
 
 
 
-export default outfit Welcome
+export default Hybrid Welcome

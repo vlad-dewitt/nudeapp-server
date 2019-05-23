@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux'
 import { connectRouter } from 'connected-react-router'
 
-import app from './states/app'
+import app from './boxes/app'
 
 
 

@@ -3,7 +3,7 @@ import { createContext } from 'react'
 
 import { Route, Switch, Redirect, Link } from 'react-router-dom'
 
-import { outfit } from '/client/imports/redux/outfit'
+import { Hybrid, Ambry } from '/client/imports/redux/hybrid'
 
 import classNames from 'classnames'
 
@@ -26,7 +26,8 @@ import IS from 'is_js'
 @Redirect = Redirect
 @Link = Link
 
-@outfit = outfit
+@Hybrid = Hybrid
+@Ambry = Ambry
 
 @classNames = classNames
 

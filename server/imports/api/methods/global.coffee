@@ -4,14 +4,13 @@ export default
 
     App = APP.findOne()
 
-    res =
-      config:
-        welcomeMessage: "Welcome!"
-        language: App.config.languages[0]
+    config =
+      welcomeMessage: "Welcome!"
+      language: App.config.languages[0]
 
     future.return
       code: 'S'
       message: ''
-      data: res
+      data: config
 
     future.wait()

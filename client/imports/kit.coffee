@@ -1,26 +1,37 @@
 import { SimpleLoading } from '/client/imports/ui/parts/kit'
-import { Welcome } from '/client/imports/ui/parts/kit'
 
 
 
 App = class extends Component
   constructor: (props) ->
     super props
+    @state =
+      Component: {}
+      Component_loaded: no
+
+
+
+  componentDidMount: =>
+    module.dynamicImport('/client/imports/ui/parts/welcome/kit').then (component) =>
+      @setState
+        Component: component.default
+        Component_loaded: yes
 
 
 
   render: =>
     <div id='App'>
       {
-        if not @props.app.status.loaded
+        if not @props.app.status.loaded or not @state.Component_loaded
           <div id='layout'>
             <SimpleLoading/>
           </div>
         else
-          <Route path="/" render={ => <Welcome/> }/>
+          { Component } = @state
+          <Route path='/' render={ => <Component/> }/>
       }
     </div>
 
 
 
-export default outfit App
+export default Hybrid App
