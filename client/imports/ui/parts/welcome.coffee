@@ -16,7 +16,7 @@ Welcome = class extends Component
 
 
 
-Shape =
+Shape = (theme) =>
   Welcome:
     position: 'relative'
     width: '100%'

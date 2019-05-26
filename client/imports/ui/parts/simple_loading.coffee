@@ -41,7 +41,7 @@ SimpleLoading = class extends Component
 
 
 
-Shape =
+Shape = (theme) =>
   SimpleLoading:
     position: 'relative'
     width: '100%'
