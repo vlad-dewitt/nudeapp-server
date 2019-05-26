@@ -1,5 +1,3 @@
-import './kit.styl'
-
 import vector_icons from '/client/imports/ui/shape/vector/icons/kit'
 
 
@@ -37,10 +35,26 @@ SimpleLoading = class extends Component
 
 
   render: =>
-    <div id='SimpleLoading' className='untouchable cursor_loading'>
+    <div id='SimpleLoading' className={ classNames @props.classes.SimpleLoading, 'untouchable', 'cursor_loading' }>
       <div id='icon'>{ vector_icons.init_loading }</div>
     </div>
 
 
 
-export default Hybrid SimpleLoading
+Shape =
+  SimpleLoading:
+    position: 'relative'
+    width: '100%'
+    height: '100%'
+
+    '& > #icon':
+      position: 'absolute'
+      width: 64
+      height: 64
+      top: '50%'
+      left: '50%'
+      transform: 'translate3d(-50%, -50%, 0)'
+
+
+
+export default Hybrid SimpleLoading, Shape

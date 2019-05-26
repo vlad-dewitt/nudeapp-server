@@ -3,7 +3,11 @@ import { createContext } from 'react'
 
 import { Route, Switch, Redirect, Link } from 'react-router-dom'
 
-import { Hybrid, Ambry } from '/client/imports/redux/hybrid'
+import Helmet from 'react-helmet'
+
+import { Hybrid, Ambry } from '/client/imports/genius/hybrid'
+
+import API from '/client/imports/api/global.coffee'
 
 import classNames from 'classnames'
 
@@ -26,8 +30,12 @@ import IS from 'is_js'
 @Redirect = Redirect
 @Link = Link
 
+@Helmet = Helmet
+
 @Hybrid = Hybrid
 @Ambry = Ambry
+
+@API = API
 
 @classNames = classNames
 

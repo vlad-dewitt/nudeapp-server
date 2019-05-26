@@ -1,4 +1,4 @@
-import { SimpleLoading } from '/client/imports/ui/parts/kit'
+import SimpleLoading from '/client/imports/ui/parts/simple_loading'
 
 
 
@@ -12,7 +12,7 @@ App = class extends Component
 
 
   componentDidMount: =>
-    module.dynamicImport('/client/imports/ui/parts/welcome/kit').then (component) =>
+    module.dynamicImport('/client/imports/ui/parts/welcome').then (component) =>
       @setState
         Component: component.default
         Component_loaded: yes

@@ -1,5 +1,9 @@
 import { connect } from 'react-redux'
+
 import { withRouter } from 'react-router-dom'
+
+import withStyles from 'react-jss'
+import { Stylus } from '/client/imports/ui/shape/global'
 
 import Hunter from './hunter'
 Hunter()
@@ -31,8 +35,11 @@ States = (state, props) ->
 
 
 
-Hybrid = (component) ->
-  withRouter connect(States, null, Merge)(component)
+Hybrid = (component, shape) ->
+  if shape
+    withRouter connect(States, null, Merge)(withStyles(shape)(component))
+  else
+    withRouter connect(States, null, Merge)(withStyles(Stylus)(component))
 
 
 
