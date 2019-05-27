@@ -5,9 +5,7 @@ import { Route, Switch, Redirect, Link } from 'react-router-dom'
 
 import Helmet from 'react-helmet'
 
-import { Hybrid, Ambry } from '/client/imports/genius/hybrid'
-
-import API from '/client/imports/api/global.coffee'
+import { Hybrid, API, Ambry } from '/client/imports/genius/hybrid'
 
 import classNames from 'classnames'
 
@@ -33,9 +31,8 @@ import IS from 'is_js'
 @Helmet = Helmet
 
 @Hybrid = Hybrid
-@Ambry = Ambry
-
 @API = API
+@Ambry = Ambry
 
 @classNames = classNames
 

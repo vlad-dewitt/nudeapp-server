@@ -8,6 +8,8 @@ import { Stylus } from '/client/imports/ui/shape/global'
 import Hunter from './hunter'
 Hunter()
 
+import API from './api/kit'
+
 
 
 Merge = (state, acts, props) ->
@@ -41,4 +43,4 @@ Ambry =
 
 
 
-export { Hybrid, Ambry, Stylus }
+export { Hybrid, API, Ambry, Stylus }
