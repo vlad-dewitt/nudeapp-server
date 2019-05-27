@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 
 import withStyles from 'react-jss'
-import { Stylus } from '/client/imports/ui/shape/global'
+import { Theme, Stylus } from '/client/imports/ui/shape/global'
 
 import Hunter from './hunter'
 Hunter()
@@ -43,4 +43,4 @@ Ambry =
 
 
 
-export { Hybrid, API, Ambry, Stylus }
+export { Hybrid, API, Ambry, Theme, Stylus }
