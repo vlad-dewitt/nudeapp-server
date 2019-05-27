@@ -10,18 +10,6 @@ Hunter()
 
 
 
-Ambry =
-  call: (id, data) =>
-    if not data
-      STORE.dispatch
-        type: id
-    else
-      STORE.dispatch
-        type: id
-        data: data
-
-
-
 Merge = (state, acts, props) ->
   {
     props...
@@ -41,6 +29,16 @@ Hybrid = (component, shape) ->
   else
     withRouter connect(States, null, Merge)(withStyles(Stylus)(component))
 
+Ambry =
+  call: (id, data) =>
+    if not data
+      STORE.dispatch
+        type: id
+    else
+      STORE.dispatch
+        type: id
+        data: data
 
 
-export { Hybrid, Ambry }
+
+export { Hybrid, Ambry, Stylus }

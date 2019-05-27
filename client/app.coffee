@@ -5,10 +5,9 @@ import { createBrowserHistory } from 'history'
 import { createStore, applyMiddleware } from 'redux'
 import { composeWithDevTools } from 'redux-devtools-extension'
 
+import Redux from './imports/genius/redux'
 import { ThemeProvider } from 'react-jss'
-import { Theme } from '/client/imports/ui/shape/global'
-
-import Genius from './imports/genius/kit'
+import { Stylus } from '/client/imports/genius/hybrid'
 
 import '/client/lib/global_scope'
 
@@ -21,16 +20,16 @@ history = createBrowserHistory()
 
 
 if Meteor.isDevelopment
-  @STORE = createStore Genius(history), composeWithDevTools applyMiddleware routerMiddleware(history)
+  @STORE = createStore Redux(history), composeWithDevTools applyMiddleware routerMiddleware(history)
 else
-  @STORE = createStore Genius(history), applyMiddleware routerMiddleware(history)
+  @STORE = createStore Redux(history), applyMiddleware routerMiddleware(history)
 
 
 
 Meteor.startup ->
   render <Provider store={ STORE }>
       <Router history={ history } >
-        <ThemeProvider theme={ Theme }>
+        <ThemeProvider theme={ Stylus }>
           <App/>
         </ThemeProvider>
       </Router>
