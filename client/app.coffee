@@ -7,7 +7,7 @@ import { composeWithDevTools } from 'redux-devtools-extension'
 
 import Redux from './imports/genius/redux'
 import { ThemeProvider } from 'react-jss'
-import { Stylus } from '/client/imports/genius/hybrid'
+import { Theme } from '/client/imports/genius/hybrid'
 
 import '/client/lib/global_scope'
 
@@ -29,7 +29,7 @@ else
 Meteor.startup ->
   render <Provider store={ STORE }>
       <Router history={ history } >
-        <ThemeProvider theme={ Stylus }>
+        <ThemeProvider theme={ Theme }>
           <App/>
         </ThemeProvider>
       </Router>
