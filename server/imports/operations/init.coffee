@@ -1,5 +1,5 @@
 export default
-  APP: ->
+  APP: =>
     APP = new Mongo.Collection 'app'
 
     if APP.find().count() is 0

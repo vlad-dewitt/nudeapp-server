@@ -1,5 +1,5 @@
 export default
-  getInitConfig: (data) ->
+  getInitConfig: (data) =>
     future = new Future()
 
     App = APP.findOne()

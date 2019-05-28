@@ -10,7 +10,7 @@ import global from './imports/api/methods/global'
 
 
 
-Meteor.startup ->
+Meteor.startup =>
   console.log "----------------------------------------------------------------------------"
   console.log "|                       Server started successfully                        |"
   console.log "----------------------------------------------------------------------------"
