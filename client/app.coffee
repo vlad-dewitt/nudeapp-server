@@ -1,3 +1,5 @@
+import '/client/lib/global_scope'
+
 import { render } from 'react-dom'
 import { Provider } from 'react-redux'
 import { ConnectedRouter as Router, routerMiddleware } from 'connected-react-router'
@@ -8,8 +10,6 @@ import { composeWithDevTools } from 'redux-devtools-extension'
 import Redux from './imports/genius/redux'
 import { ThemeProvider } from 'react-jss'
 import { Theme } from '/client/imports/genius/hybrid'
-
-import '/client/lib/global_scope'
 
 import App from './imports/kit'
 

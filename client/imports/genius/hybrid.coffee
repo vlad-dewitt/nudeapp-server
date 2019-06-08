@@ -12,24 +12,16 @@ import API from './api/kit'
 
 
 
-Merge = (state, acts, props) ->
-  {
-    props...
-    app: {
-      state.app...
-    }
-  }
-
 States = (state, props) ->
-  app: state.app
+  { state... }
 
 
 
 Hybrid = (component, shape) ->
   if shape
-    withRouter connect(States, null, Merge)(withStyles(shape)(component))
+    withRouter connect(States, null)(withStyles(shape)(component))
   else
-    withRouter connect(States, null, Merge)(withStyles(Stylus)(component))
+    withRouter connect(States, null)(withStyles(Stylus)(component))
 
 Ambry =
   call: (id, data) =>

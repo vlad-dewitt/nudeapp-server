@@ -43,3 +43,5 @@ import IS from 'is_js'
 
 @random = random
 @IS = IS
+
+@SimpleVars = {}
