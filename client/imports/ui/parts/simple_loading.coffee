@@ -11,8 +11,8 @@ SimpleLoading = class extends Component
   componentDidMount: =>
     anime
       targets: ['#SimpleLoading > #icon > svg']
-      scale: [0, 1]
-      rotate: [-120, 0]
+      scale: 1
+      rotate: 0
       baseFrequency: 0
       duration: 800
       endDelay: 200
@@ -22,9 +22,9 @@ SimpleLoading = class extends Component
       loopComplete: (anim) =>
         if anim.reversed
           config = @props.app.config
-          if config
-            anim.pause()
-            Ambry.call 'setAppLoaded'
+          # if config
+          #   anim.pause()
+          #   Ambry.call 'setAppLoaded'
 
     Meteor.call 'getInitConfig', null, (err, res) ->
       if err
@@ -36,7 +36,7 @@ SimpleLoading = class extends Component
 
   render: =>
     <div id='SimpleLoading' className={ classNames @props.classes.SimpleLoading, 'untouchable', 'cursor_loading' }>
-      <div id='icon'>{ vector_icons.init_loading }</div>
+      <div id='icon'>{ vector_icons.logo }</div>
     </div>
 
 
@@ -46,11 +46,12 @@ Shape = (theme) =>
     position: 'relative'
     width: '100%'
     height: '100%'
+    background: 'linear-gradient(to bottom left, #E4ADAB, #F8DBC2)'
 
     '& > #icon':
       position: 'absolute'
-      width: 64
-      height: 64
+      width: 200
+      height: 200
       top: '50%'
       left: '50%'
       transform: 'translate3d(-50%, -50%, 0)'
