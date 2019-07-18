@@ -24,9 +24,14 @@ Meteor.startup =>
 
   # Server
 
+  cleanUsers = => Meteor.users.remove({})
+  # cleanUsers()
+
   Picker.route '/user/create', (params, req, res, next) =>
     console.log '=================> REQUEST'
     console.log req.body
+
+    # cleanUsers()
 
     timestamp = new Date().getTime();
     data = req.body
@@ -42,17 +47,20 @@ Meteor.startup =>
           status: 'User Exists and email recognized'
           device_id_found: yes
           email_with_device_id_found: yes
-          user: data
+          user: findUser
+        res.statusCode = 200
         res.end response
       else
         response = JSON.stringify
           status: 'User Exists and email not recognized'
           device_id_found: yes
           email_with_device_id_found: no
-          user: data
+          user: findUser
+        res.statusCode = 200
         res.end response
     else
       Accounts.createUser
+        username: data.deviceInfo
         email: data.email
         profile:
           on_trial: no
@@ -61,7 +69,7 @@ Meteor.startup =>
           imageProcessed: 0
           referralCode: referralCode
           referrerCode: data.referrer
-          expires: null
+          expires: moment(timestamp).add(3, 'year')
           deviceId: data.deviceInfo
           createdAt: timestamp
           updatedAt: timestamp
@@ -70,35 +78,36 @@ Meteor.startup =>
         referralCode: referralCode
         device_id_found: no
         email_with_device_id_found: no
+      res.statusCode = 200
       res.end response
 
 
 
   # Test requests
 
-  headers =
-    'Content-Type': 'application/json; charset=utf-8'
-
-  user_data =
-    email: 'vadik@email.com'
-    referrer: ''
-    deviceInfo: 'blablabla'
-    account_created_at: new Date()
-    pin: '6666'
-    device_id: '1234567890'
-    user_referral_code: ''
-    referral_code_used: ''
-    emails: [
-      { email: 'vadik@email.com' }
-    ]
-
-  HTTP.post 'http://localhost:3000/user/create', { headers: headers, content: JSON.stringify user_data }, (err, res) =>
-    console.log '<================= RESPONSE'
-    if err
-      console.error err
-    else
-      console.log res.statusCode
-      console.log JSON.parse res.content
+  # headers =
+  #   'Content-Type': 'application/json; charset=utf-8'
+  #
+  # user_data =
+  #   email: 'vadik@email.com'
+  #   referrer: ''
+  #   deviceInfo: '1234567890'
+  #   account_created_at: new Date()
+  #   pin: '6666'
+  #   device_id: '1234567890'
+  #   user_referral_code: ''
+  #   referral_code_used: ''
+  #   emails: [
+  #     { email: 'vadik@email.com' }
+  #   ]
+  #
+  # HTTP.post 'http://localhost:3000/user/create', { headers: headers, content: JSON.stringify user_data }, (err, res) =>
+  #   console.log '<================= RESPONSE'
+  #   if err
+  #     console.error err
+  #   else
+  #     console.log res.statusCode
+  #     console.log JSON.parse res.content
 
 
 
