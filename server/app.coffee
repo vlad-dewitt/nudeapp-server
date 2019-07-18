@@ -22,12 +22,59 @@ Meteor.startup =>
 
 
 
+  # Server
+
   Picker.route '/user/create', (params, req, res, next) =>
     console.log '=================> REQUEST'
     console.log req.body
-    list = Meteor.users.find().fetch()
-    res.end JSON.stringify req.body
 
+    timestamp = new Date().getTime();
+    data = req.body
+
+    confirmToken = random 'A0', 4
+    referralCode = random 'A0', 6
+
+    findUser = Meteor.users.findOne({ 'profile.deviceId': data.deviceInfo })
+
+    if findUser
+      if Accounts.findUserByEmail data.email
+        response = JSON.stringify
+          status: 'User Exists and email recognized'
+          device_id_found: yes
+          email_with_device_id_found: yes
+          user: data
+        res.end response
+      else
+        response = JSON.stringify
+          status: 'User Exists and email not recognized'
+          device_id_found: yes
+          email_with_device_id_found: no
+          user: data
+        res.end response
+    else
+      Accounts.createUser
+        email: data.email
+        profile:
+          on_trial: no
+          confirmToken: confirmToken
+          emailConfirmed: no
+          imageProcessed: 0
+          referralCode: referralCode
+          referrerCode: data.referrer
+          expires: null
+          deviceId: data.deviceInfo
+          createdAt: timestamp
+          updatedAt: timestamp
+      response = JSON.stringify
+        email: data.email
+        referralCode: referralCode
+        device_id_found: no
+        email_with_device_id_found: no
+      res.end response
+
+
+
+  # Test requests
 
   headers =
     'Content-Type': 'application/json; charset=utf-8'
@@ -45,12 +92,13 @@ Meteor.startup =>
       { email: 'vadik@email.com' }
     ]
 
-  HTTP.post 'http://4e919b61.ngrok.io/user/create', { headers: headers, content: JSON.stringify user_data }, (err, res) =>
+  HTTP.post 'http://localhost:3000/user/create', { headers: headers, content: JSON.stringify user_data }, (err, res) =>
     console.log '<================= RESPONSE'
     if err
       console.error err
     else
-      console.log res
+      console.log res.statusCode
+      console.log JSON.parse res.content
 
 
 
