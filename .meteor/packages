@@ -23,3 +23,5 @@ coffeescript@2.3.2_1
 underscore@1.0.10
 meteorhacks:picker
 http
+momentjs:moment
+email
