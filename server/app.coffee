@@ -222,15 +222,21 @@ Meteor.startup =>
     findUser = Meteor.users.findOne({ 'username': data.deviceInfo })
 
     if findUser
-      Accounts.removeEmail findUser._id, findUser.profile.email
-      Accounts.addEmail findUser._id, data.newEmail
-      Meteor.users.update({ username: data.deviceInfo }, { $set: { 'profile.email': data.newEmail } })
-      response = JSON.stringify
-        status: 'Done'
-      res.statusCode = 200
-      res.end response
+      if findUser.profile.email.length > 0
+        Accounts.removeEmail findUser._id, findUser.profile.email
+      if Accounts.findUserByEmail data.newEmail
+        response = JSON.stringify
+          status: 'Failed'
+        res.statusCode = 200
+        res.end response
+      else
+        Accounts.addEmail findUser._id, data.newEmail
+        Meteor.users.update({ username: data.deviceInfo }, { $set: { 'profile.email': data.newEmail } })
+        response = JSON.stringify
+          status: 'Done'
+        res.statusCode = 200
+        res.end response
     else
-      console.error 'User with device ' + data.deviceInfo + ' not found'
       response = JSON.stringify
         status: 'Failed'
       res.statusCode = 200
@@ -279,5 +285,26 @@ Meteor.startup =>
     else
       response = JSON.stringify
         confirmed: no
+      res.statusCode = 200
+      res.end response
+
+
+
+  Picker.route '/photo/check_nudity', (params, req, res, next) =>
+    console.log '=================> REQUEST CHECK NUDITY'
+    console.log req.body
+
+    data = req.body
+
+    findUser = Meteor.users.findOne({ 'username': data.deviceInfo, 'profile.confirmToken': data.token })
+
+    if findUser
+      response = JSON.stringify
+        status: 'Success'
+      res.statusCode = 200
+      res.end response
+    else
+      response = JSON.stringify
+        status: 'Failed'
       res.statusCode = 200
       res.end response
