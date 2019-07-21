@@ -1,5 +1,5 @@
 {
-  "name": "BASE",
+  "name": "NudeServer",
   "private": true,
   "scripts": {
     "start": "meteor run"
