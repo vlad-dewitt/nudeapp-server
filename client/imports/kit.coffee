@@ -12,11 +12,7 @@ App = class extends Component
 
 
   componentDidMount: =>
-    if Meteor.isDevelopment
-      component = require '/client/imports/ui/parts/welcome'
-    else
-      module.dynamicImport('/client/imports/ui/parts/welcome').then (component) =>
-
+    component = require '/client/imports/ui/parts/welcome'
     @setState
       Component: component.default
       Component_loaded: yes
