@@ -12,7 +12,7 @@ App = class extends Component
 
 
   componentDidMount: =>
-    component = require '/client/imports/ui/parts/welcome'
+    component = require '/client/imports/ui/parts/landing'
     @setState
       Component: component.default
       Component_loaded: yes

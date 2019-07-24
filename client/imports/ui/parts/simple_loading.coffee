@@ -22,9 +22,9 @@ SimpleLoading = class extends Component
       loopComplete: (anim) =>
         if anim.reversed
           config = @props.app.config
-          # if config
-          #   anim.pause()
-          #   Ambry.call 'setAppLoaded'
+          if config
+            anim.pause()
+            Ambry.call 'setAppLoaded'
 
     Meteor.call 'getInitConfig', null, (err, res) ->
       if err
