@@ -1,7 +1,7 @@
 module.exports = {
   servers: {
     one: {
-      host: 'nudeapp.tenhundred.com',
+      host: 'thenudeapp.com',
       username: 'ubuntu',
       pem: '../../../keys/nudeapp.pem'
     }
@@ -20,7 +20,7 @@ module.exports = {
     },
 
     env: {
-      ROOT_URL: 'https://nudeapp.tenhundred.com',
+      ROOT_URL: 'https://thenudeapp.com',
       MONGO_URL: 'mongodb://mongodb/meteor',
       MONGO_OPLOG_URL: 'mongodb://mongodb/local',
     },
@@ -40,7 +40,7 @@ module.exports = {
   },
 
   proxy: {
-    domains: 'nudeapp.tenhundred.com',
+    domains: 'thenudeapp.com',
 
     ssl: {
       letsEncryptEmail: 'vlad@hexa.systems',
