@@ -1,5 +1,5 @@
 import SimpleLoading from '/client/imports/ui/parts/simple_loading'
-
+import Modal from '/client/imports/ui/parts/modal'
 
 
 App = class extends Component
