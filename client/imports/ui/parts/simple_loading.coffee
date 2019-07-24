@@ -24,7 +24,13 @@ SimpleLoading = class extends Component
           config = @props.app.config
           if config
             anim.pause()
-            Ambry.call 'setAppLoaded'
+            anime
+              targets: ['#SimpleLoading']
+              opacity: [1, 0]
+              duration: 1000
+              easing: 'easeInOutQuint'
+              complete: =>
+                Ambry.call 'setAppLoaded'
 
     Meteor.call 'getInitConfig', null, (err, res) ->
       if err

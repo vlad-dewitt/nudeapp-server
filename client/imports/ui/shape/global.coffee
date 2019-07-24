@@ -22,6 +22,7 @@ Stylus = (Theme) =>
         display: 'block'
         width: '100%'
         height: '100%'
+        background: 'url(/img/pictures/bg.jpg) center/cover no-repeat'
 
       '& > #root > #App':
         overflow: 'auto'
@@ -39,6 +40,10 @@ Stylus = (Theme) =>
     'div, h1, h2, h3, h4, h5, h6, p, span, img':
       fontFamily: "'Roboto', sans-serif"
       userSelect: 'none'
+
+    'a':
+      color: 'white'
+      textDecoration: 'none'
 
     'h1, h2, h3, h4, h5, h6, p':
       cursor: 'default'

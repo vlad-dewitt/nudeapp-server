@@ -5,8 +5,18 @@ import vector_icons from '/client/imports/ui/shape/vector/icons/kit'
 Landing = class extends Component
   constructor: (props) ->
     super props
+    @state =
+      ios_url: 'https://apps.apple.com/us/app/nude-app/id1281405417?l=ru&ls=1'
+      android_available: no
 
 
+
+  componentDidMount: =>
+    anime
+      targets: '#Landing'
+      opacity: [0, 1]
+      duration: 1000
+      easing: 'easeInOutQuint'
 
 
 
@@ -22,9 +32,7 @@ Landing = class extends Component
       </div>
       <div id='content'>
         <div id='left'>
-          <div id='vidos'>
-            <div id='play' className='cursor_pointer'></div>
-          </div>
+          <div id='vidos'></div>
         </div>
         <div id='right'>
           <h1>A Secure Vault for All Your<br/> Naughty Photos</h1>
@@ -54,13 +62,19 @@ Landing = class extends Component
             </div>
           </div>
           <div id='bottom'>
-            <div id='left' className='cursor_pointer'>
-              <div id='icon'></div>
-              <h2>App Store</h2>
-            </div>
-            <div id='right' className='cursor_pointer'>
+            <a href={ @state.ios_url } target='_blank'>
+              <div id='left' className='cursor_pointer'>
+                <div id='icon'></div>
+                <h2>App Store</h2>
+              </div>
+            </a>
+            <div id='right' className={ classNames 'cursor_pointer': @state.android_available, 'inactive': not @state.android_available }>
               <div id='icon'></div>
               <h2>Google Play</h2>
+              {
+                if not @state.android_available
+                  <p>Coming soon</p>
+              }
             </div>
           </div>
         </div>
@@ -87,7 +101,7 @@ Landing = class extends Component
       </div>
       <div id='footer'>
         <div id='left'>
-          <h3>© 2017 Nude | A HEXA Product. All rights reserved.</h3>
+          <h3>{ "© #{ new Date().getFullYear() } Nude | A HEXA Product. All rights reserved." }</h3>
         </div>
         <div id='center'>
           <div id='face' className='cursor_pointer'>
@@ -110,7 +124,7 @@ Shape = (theme) =>
     position: 'relative'
     width: '100%'
     height: '100%'
-    background: 'url(/img/pictures/bg.jpg) center/cover no-repeat'
+    opacity: 0
 
     '& > #header':
       position: 'relative'
@@ -153,7 +167,10 @@ Shape = (theme) =>
         textAlign: 'right'
 
     '& > #content':
-      position: 'relative'
+      position: 'absolute'
+      transform: 'translate3d(0, -50%, 0)'
+      width: '100%'
+      top: '45%'
       padding: '0 3em'
       boxSizing: 'border-box'
       marginTop: '2em'
@@ -167,8 +184,10 @@ Shape = (theme) =>
 
         '& > #vidos':
           width: '100%'
-          height: '20em'
+          height: '44vh'
+          minHeight: '20em'
           borderRadius: '4px'
+          background: 'url(/img/videos/nude_intro.gif) center/contain no-repeat'
           backgroundColor: 'rgba(255,255,255, .2)'
 
           '& > #play':
@@ -263,7 +282,7 @@ Shape = (theme) =>
           textAlign: 'center'
           marginTop: '2em'
 
-          '& > #left, & #right':
+          '& #left, #right':
             position: 'relative'
             display: 'inline-block'
             verticalAlign: 'middle'
@@ -282,6 +301,10 @@ Shape = (theme) =>
               transform: 'scale(1)'
               transition: '.1s'
 
+            '&.inactive':
+              opacity: '.5'
+              pointerEvents: 'none'
+
             '& > #icon':
               position: 'absolute'
               transform: 'translate3d(0%, -50%, 0)'
@@ -296,8 +319,16 @@ Shape = (theme) =>
               paddingLeft: '20px'
               letterSpacing: '.5px'
 
+            '& > p':
+              position: 'absolute'
+              transform: 'translate3d(-50%, 0, 0)'
+              letterSpacing: '.5px'
+              top: '90%'
+              left: '50%'
+              textTransform: 'uppercase'
+              fontSize: '90%'
 
-          '& > #left':
+          '& #left':
             marginRight: '5%'
 
             '& > #icon':
@@ -320,9 +351,24 @@ Shape = (theme) =>
             height: 26
 
     '& > #footer':
-      position: 'relative'
+      position: 'absolute'
+      width: '100%'
+      bottom: 0
       textAlign: 'center'
-      marginTop: '3em'
+      marginBottom: '2em'
+      paddingTop: '1em'
+
+      '&:before':
+        content: '""'
+        position: 'absolute'
+        width: '90%'
+        margin: '0 5%'
+        opacity: .7
+        height: '1px'
+        backgroundColor: '#C9C9C9'
+        boxShadow: '0 1px 3em rgba(0, 0, 0, 0.5)'
+        top: 0
+        left: 0
 
       '& > #left, & > #center, & > #right':
         position: 'relative'
@@ -356,7 +402,7 @@ Shape = (theme) =>
             transition: '.2s'
 
             '&:hover':
-              transform: 'scale(1.05)'
+              transform: 'scale(1.15)'
               transition: '.2s'
 
             '&:active':
@@ -376,7 +422,7 @@ Shape = (theme) =>
           transition: '.2s'
 
           '&:hover':
-            opacity: '.6'
+            opacity: '.8'
             textDecoration: 'none'
             transition: '.2s'
 
