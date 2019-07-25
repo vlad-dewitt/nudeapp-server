@@ -65,7 +65,7 @@ Stylus = (Theme) =>
     '.cursor_loading, .cursor_loading *':
       cursor: 'progress'
 
-    '.selectable_text':
+    '.selectable_text, .selectable_text *':
       userSelect: 'text'
       cursor: 'text'
 

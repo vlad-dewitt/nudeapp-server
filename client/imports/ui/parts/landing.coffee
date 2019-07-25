@@ -1,4 +1,5 @@
 import vector_icons from '/client/imports/ui/shape/vector/icons/kit'
+import Modal from '/client/imports/ui/parts/modal'
 
 
 
@@ -20,14 +21,38 @@ Landing = class extends Component
 
 
 
+  closeModal: =>
+    anime
+      targets: '#Modal > #window'
+      duration: 300
+      easing: 'easeInOutQuint'
+      scale: 1.2
+      translateY: '32px'
+      opacity: 0
+    anime
+      targets: '#Modal > #layer'
+      duration: 200
+      delay: 150
+      easing: 'linear'
+      opacity: 0
+      complete: =>
+        @props.history.push '/'
+
+
+
   render: =>
     <div id='Landing' className={ @props.classes.Landing }>
+      <Helmet>
+        <title>NudeApp</title>
+      </Helmet>
       <div id='header'>
         <div id='left'>
           <div id='logo'>{ vector_icons.logo }</div>
         </div>
-        <div id='right' className='cursor_pointer'>
-          <button>CONTACT</button>
+        <div id='right'>
+          <Link to='/contact-us'>
+            <button className='cursor_pointer'>CONTACT</button>
+          </Link>
         </div>
       </div>
       <div id='content'>
@@ -112,10 +137,18 @@ Landing = class extends Component
           </div>
         </div>
         <div id='right'>
-          <h3 className='cursor_pointer'>Privacy</h3>
-          <h3 className='cursor_pointer'>Terms & Conditions</h3>
+          <Link to='/privacy-policy'>
+            <p className='cursor_pointer'>Privacy</p>
+          </Link>
+          <Link to='/terms-of-service'>
+            <p className='cursor_pointer'>Terms & Conditions</p>
+          </Link>
         </div>
       </div>
+      {
+        if @props.modal
+          <Modal type={ @props.modal } closeModal={ @closeModal }/>
+      }
     </div>
 
 
@@ -141,7 +174,7 @@ Shape = (theme) =>
           position: 'relative'
           width: '118px'
 
-        '& > button':
+        '& button':
           position: 'relative'
           padding: '10px 32px'
           outline: 'none'
@@ -415,20 +448,24 @@ Shape = (theme) =>
 
       '& > #right':
 
-        '& > h3':
+        '& > a':
+          display: 'inline-block'
           marginRight: '1.5em'
-          textDecoration: 'underline'
-          letterSpacing: '.5px'
-          transition: '.2s'
 
-          '&:hover':
-            opacity: '.8'
-            textDecoration: 'none'
+          '& > p':
+            fontSize: '80%'
+            textDecoration: 'underline'
+            letterSpacing: '.5px'
             transition: '.2s'
 
-          '&:active':
-            transform: 'scale(1)'
-            transition: '.1s'
+            '&:hover':
+              opacity: '.8'
+              textDecoration: 'none'
+              transition: '.2s'
+
+            '&:active':
+              transform: 'scale(1)'
+              transition: '.1s'
 
 
 
