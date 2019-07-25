@@ -197,4 +197,4 @@ Shape = (theme) =>
 
 
 
-export default Hybrid Contact,  Shape
+export default Hybrid Contact, Shape
