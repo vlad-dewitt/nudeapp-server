@@ -12,7 +12,10 @@ App = class extends Component
 
 
   componentDidMount: =>
-    landing = require '/client/imports/ui/parts/landing'
+    if IS.mobile()
+      landing = require '/client/imports/ui/parts/landing_mobile'
+    else
+      landing = require '/client/imports/ui/parts/landing'
     @setState
       Landing: landing.default
       Landing_loaded: yes
@@ -20,10 +23,9 @@ App = class extends Component
 
 
   render: =>
-    <div id='App'>
+    <div id='App' className={ classNames 'mobile': IS.mobile() }>
       {
         if not @props.app.status.loaded or not @state.Landing_loaded
-        # if not @state.Landing_loaded
           <div id='layout'>
             <SimpleLoading/>
           </div>

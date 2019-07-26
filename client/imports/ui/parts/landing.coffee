@@ -36,6 +36,8 @@ Landing = class extends Component
       easing: 'linear'
       opacity: 0
       complete: =>
+        $('#App').css
+          overflowY: 'auto'
         @props.history.push '/'
 
 

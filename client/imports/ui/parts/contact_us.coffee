@@ -27,7 +27,7 @@ Contact  = class extends Component
 
 
   render: =>
-    <div id='Contact' className={ @props.classes.Contact }>
+    <div id='Contact' className={ classNames @props.classes.Contact, 'mobile': IS.mobile() }>
       <Helmet>
         <title>NudeApp - Contact Us</title>
       </Helmet>
@@ -84,8 +84,10 @@ Shape = (theme) =>
 
           '& > h1':
             margin: 0
-            fontSize: '240%'
+            fontSize: => if IS.mobile() then '170%' else '240%'
+            lineHeight: => if IS.mobile() then '44px' else '100%'
             fontWeight: '400'
+            textAlign: 'left !important'
             marginBottom: '.3em'
 
           '& > #line':
@@ -194,6 +196,34 @@ Shape = (theme) =>
             color: 'white'
             fontSize: '80%'
             letterSpacing: '.5px'
+
+    '&.mobile':
+
+      '& > #layout':
+        textAlign: 'center'
+        overflowY: 'auto'
+        '-webkit-overflow-scrolling': 'touch'
+
+        '.scrollbar_hidden::-webkit-scrollbar':
+          display: 'none'
+
+        '& > #left, & > #right':
+          position: 'relative'
+          display: 'block'
+          width: '100%'
+          height: 'auto'
+          textAlign: 'center'
+
+          '& > #data':
+            position: 'relative'
+            transform: 'translate3d(0, 0, 0)'
+            top: 0
+            margin: '3em 0'
+
+        '& > #right':
+          width: '100%'
+          height: '280px'
+          marginRight: 0
 
 
 

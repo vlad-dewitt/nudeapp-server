@@ -56,8 +56,8 @@ Shape = (theme) =>
 
     '& > #icon':
       position: 'absolute'
-      width: 200
-      height: 200
+      width: => if IS.mobile() then 140 else 200
+      height: => if IS.mobile() then 140 else 200
       top: '50%'
       left: '50%'
       transform: 'translate3d(-50%, -50%, 0)'

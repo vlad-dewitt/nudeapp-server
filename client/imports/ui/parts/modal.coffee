@@ -12,6 +12,11 @@ Modal  = class extends Component
 
 
   componentDidMount: =>
+    $('#App').animate
+      scrollTop: 0
+    , 200
+    $('#App').css
+      overflowY: 'hidden'
     anime
       targets: '#Modal > #layer'
       duration: 100
@@ -28,8 +33,11 @@ Modal  = class extends Component
 
 
   render: =>
-    <div id='Modal' className={ @props.classes.Modal }>
-      <div id='layer' onClick={ @props.closeModal }></div>
+    <div id='Modal' className={ classNames @props.classes.Modal, 'mobile': IS.mobile() }>
+      {
+        if not IS.mobile()
+          <div id='layer' onClick={ @props.closeModal }></div>
+      }
       <div id='window'>
         <div id='close' className='cursor_pointer' onClick={ @props.closeModal }>
           <div id='icon'></div>
@@ -52,6 +60,7 @@ Modal  = class extends Component
 Shape = (theme) =>
   Modal:
     position: 'absolute'
+    zIndex: '9999'
     width: '100vw'
     height: '100vh'
     top: 0
@@ -103,6 +112,20 @@ Shape = (theme) =>
           width: 12
           height: 12
           background: 'url(/img/icons/close.png) center/contain no-repeat'
+
+    '&.mobile':
+
+      '& > #window':
+        width: '100%'
+        height: '100%'
+        top: 0
+        left: 0
+        borderRadius: 0
+        padding: '5%'
+
+        '& > #close':
+          top: 18
+          right: 18
 
 
 

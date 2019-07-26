@@ -6,14 +6,17 @@ Privacy  = class extends Component
 
 
   render: =>
-    <div id='Privacy' className={ @props.classes.Privacy }>
+    <div id='Privacy' className={ classNames @props.classes.Privacy, 'mobile': IS.mobile() }>
       <Helmet>
         <title>NudeApp - Privacy Policy</title>
       </Helmet>
       <div id='layout'>
         <div id='header'>
           <h1>Privacy Policy</h1>
-          <h3>Our full Privacy Policy is below, in glorious legalese. Please ask<br/>us any questions you may have after reading it.</h3>
+          {
+            if not IS.mobile()
+              <h3>Our full Privacy Policy is below, in glorious legalese. Please ask<br/>us any questions you may have after reading it.</h3>
+          }
           <div id='line'></div>
         </div>
         <div id='data'>
@@ -118,7 +121,8 @@ Shape = (theme) =>
           display: 'inline-block'
           verticalAlign: 'middle'
           margin: 0
-          fontSize: '240%'
+          fontSize: => if IS.mobile() then '170%' else '240%'
+          lineHeight: => if IS.mobile() then '44px' else '100%'
           fontWeight: '500'
 
         '& > h3':
@@ -138,13 +142,14 @@ Shape = (theme) =>
       '& > #data':
         position: 'relative'
         width: '100%'
-        height: 'calc(100% - 68px)'
+        height: => if IS.mobile() then 'calc(100% - 56px)' else 'calc(100% - 68px)'
         padding: '2em 0 0'
         boxSizing: 'border-box'
 
         '& > #layout':
           height: '100%'
           overflowY: 'auto'
+          '-webkit-overflow-scrolling': 'touch'
 
           '& > #content':
             height: 'auto'

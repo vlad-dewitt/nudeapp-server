@@ -22,14 +22,21 @@ Stylus = (Theme) =>
         display: 'block'
         width: '100%'
         height: '100%'
-        background: 'url(/img/pictures/bg.jpg) center/cover no-repeat'
+        background: => if IS.mobile() then 'url(/img/pictures/bg.jpg) 65%/cover no-repeat' else 'url(/img/pictures/bg.jpg) center/cover no-repeat'
 
       '& > #root > #App':
-        overflow: 'auto'
+        overflowX: => if IS.mobile() then 'hidden' else 'auto'
+        overflowY: 'auto'
+        '-webkit-overflow-scrolling': 'touch'
 
-        '& > #layout':
+        '&:not(.mobile) > #layout':
           minWidth: 960
           minHeight: 640
+          overflow: 'hidden'
+
+        '&.mobile > #layout':
+          minWidth: '100vw'
+          minHeight: '100vh'
           overflow: 'hidden'
 
     '#layout':
