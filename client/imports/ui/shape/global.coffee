@@ -11,10 +11,11 @@ Stylus = (Theme) =>
       position: 'absolute'
       display: 'block'
       width: '100vw'
-      height: '100vh'
+      height: if IS.mobile() then $(window).height() else '100vh'
       margin: 0
       padding: 0
       overflow: 'hidden'
+      'overscroll-behavior': 'none'
       background: 'white'
 
       '& > #root, & > #root > #App':

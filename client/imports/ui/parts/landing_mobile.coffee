@@ -10,6 +10,7 @@ LandingMobile = class extends Component
       menu: no
       ios_url: 'https://apps.apple.com/us/app/nude-app/id1281405417?l=ru&ls=1'
       android_available: no
+      playing_video: no
 
 
 
@@ -58,6 +59,12 @@ LandingMobile = class extends Component
     @closeMenu =>
       @props.history.push "/#{ link }"
 
+  play_video: =>
+    @setState
+      playing_video: yes
+    , =>
+      $('#nude_intro')[0].play()
+
   closeModal: =>
     anime
       targets: '#Modal > #window'
@@ -91,7 +98,12 @@ LandingMobile = class extends Component
         </div>
       </div>
       <div id='content'>
-        <div id='vidos'></div>
+        <div id='vidos'>
+          <video id='nude_intro' width="100%" height="100%" controls={ no } poster='/img/pictures/poster.jpg'>
+            <source src="/img/videos/nude_intro.mp4" type="video/mp4"/>
+          </video>
+          <div id='play' className={ classNames 'cursor_pointer', 'hidden': @state.playing_video } onClick={ @play_video }></div>
+        </div>
         <div id='bottom'>
           <h1>The Sexiest App Ever.</h1>
           <div id='buttons'>
@@ -248,7 +260,32 @@ Shape = (theme) =>
         width: '160%'
         height: 260
         left: '-30%'
-        background: 'url(/img/videos/nude_intro_mobile.gif) center/contain no-repeat'
+        backgroundColor: 'rgba(255,255,255, .2)'
+        borderRadius: '4px'
+        overflow: 'hidden'
+
+        '& > video':
+          objectFit: 'cover'
+
+        '& > #play':
+          background: 'url(/img/icons/play_video.png) center/contain no-repeat'
+          width: 72
+          height: 72
+          position: 'absolute'
+          transform: 'translate3d(-50%, -50%, 0)'
+          top: '50%'
+          left: '50%'
+          transition: '.2s'
+
+          '&.hidden':
+            transform: 'translate3d(-50%, -50%, 0) scale(.6) !important'
+            opacity: 0
+            pointerEvents: 'none'
+            transition: '.3s'
+
+          '&:active':
+            transform: 'translate3d(-50%, -50%, 0) scale(.9)'
+            transition: '.1s'
 
       '& > #bottom':
         position: 'relative'

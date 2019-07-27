@@ -59,7 +59,11 @@ Landing = class extends Component
       </div>
       <div id='content'>
         <div id='left'>
-          <div id='vidos'></div>
+          <div id='vidos'>
+            <video width="100%" height="100%" controls={ no } poster='/img/pictures/poster.jpg' autoPlay>
+              <source src="/img/videos/nude_intro.mp4" type="video/mp4"/>
+            </video>
+          </div>
         </div>
         <div id='right'>
           <h1>A Secure Vault for All Your<br/> Naughty Photos</h1>
@@ -219,29 +223,38 @@ Shape = (theme) =>
 
         '& > #vidos':
           width: '100%'
-          height: '44vh'
+          height: '46vh'
           minHeight: '20em'
           borderRadius: '4px'
-          background: 'url(/img/videos/nude_intro.gif) center/contain no-repeat'
           backgroundColor: 'rgba(255,255,255, .2)'
+          overflow: 'hidden'
 
-          '& > #play':
-            background: 'url(/img/icons/play_video.png) center/contain no-repeat'
-            width: 72
-            height: 72
-            position: 'absolute'
-            transform: 'translate3d(-50%, -50%, 0)'
-            top: '50%'
-            left: '50%'
-            transition: '.2s'
+          '& > video':
+            objectFit: 'cover'
 
-            '&:hover':
-              transform: 'translate3d(-50%, -50%, 0) scale(1.05)'
-              transition: '.2s'
-
-            '&:active':
-              transform: 'translate3d(-50%, -50%, 0) scale(1)'
-              transition: '.1s'
+          # '& > #play':
+          #   background: 'url(/img/icons/play_video.png) center/contain no-repeat'
+          #   width: 72
+          #   height: 72
+          #   position: 'absolute'
+          #   transform: 'translate3d(-50%, -50%, 0)'
+          #   top: '50%'
+          #   left: '50%'
+          #   transition: '.2s'
+          #
+          #   '&.hidden':
+          #     transform: 'translate3d(-50%, -50%, 0) scale(.6) !important'
+          #     opacity: 0
+          #     pointerEvents: 'none'
+          #     transition: '.3s'
+          #
+          #   '&:hover':
+          #     transform: 'translate3d(-50%, -50%, 0) scale(1.05)'
+          #     transition: '.2s'
+          #
+          #   '&:active':
+          #     transform: 'translate3d(-50%, -50%, 0) scale(1)'
+          #     transition: '.1s'
 
       '& > #left':
         padding: '0 2%'
