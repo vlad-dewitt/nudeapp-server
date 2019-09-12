@@ -188,12 +188,20 @@ Meteor.startup =>
         res.statusCode = 200
         res.end response
     else
-      response = JSON.stringify
+      response =
         status: 'User doesn\'t exist'
         device_id_found: no
         email_with_device_id_found: no
-      res.statusCode = 200
-      res.end response
+
+
+      if data.email and Accounts.findUserByEmail data.email
+        res.statusCode = 200
+        response.status = 'User doesn\'t exist and email recognized'
+        response.email_with_device_id_found = no
+        res.end JSON.stringify response
+      else
+        res.statusCode = 200
+        res.end JSON.stringify response
 
 
 
@@ -285,26 +293,5 @@ Meteor.startup =>
     else
       response = JSON.stringify
         confirmed: no
-      res.statusCode = 200
-      res.end response
-
-
-
-  Picker.route '/photo/check_nudity', (params, req, res, next) =>
-    console.log '=================> REQUEST CHECK NUDITY'
-    console.log req.body
-
-    data = req.body
-
-    findUser = Meteor.users.findOne({ 'username': data.deviceInfo, 'profile.confirmToken': data.token })
-
-    if findUser
-      response = JSON.stringify
-        status: 'Success'
-      res.statusCode = 200
-      res.end response
-    else
-      response = JSON.stringify
-        status: 'Failed'
       res.statusCode = 200
       res.end response
