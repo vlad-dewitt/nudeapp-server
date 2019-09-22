@@ -9,6 +9,7 @@ Landing = class extends Component
     @state =
       ios_url: 'https://apps.apple.com/us/app/nude-app/id1281405417?l=ru&ls=1'
       android_available: no
+      playing_video: no
 
 
 
@@ -40,6 +41,12 @@ Landing = class extends Component
           overflowY: 'auto'
         @props.history.push '/'
 
+  play_video: =>
+    @setState
+      playing_video: yes
+    , =>
+      $('#nude_intro')[0].play()
+
 
 
   render: =>
@@ -60,9 +67,10 @@ Landing = class extends Component
       <div id='content'>
         <div id='left'>
           <div id='vidos'>
-            <video width="100%" height="100%" controls={ no } poster='/img/pictures/poster.jpg' autoPlay>
+            <video id='nude_intro' width="100%" height="100%" controls={ no } poster='/img/pictures/poster.jpg'>
               <source src="/img/videos/nude_intro.mp4" type="video/mp4"/>
             </video>
+            <div id='play' className={ classNames 'cursor_pointer', 'hidden': @state.playing_video } onClick={ @play_video }></div>
           </div>
         </div>
         <div id='right'>
@@ -232,29 +240,29 @@ Shape = (theme) =>
           '& > video':
             objectFit: 'cover'
 
-          # '& > #play':
-          #   background: 'url(/img/icons/play_video.png) center/contain no-repeat'
-          #   width: 72
-          #   height: 72
-          #   position: 'absolute'
-          #   transform: 'translate3d(-50%, -50%, 0)'
-          #   top: '50%'
-          #   left: '50%'
-          #   transition: '.2s'
-          #
-          #   '&.hidden':
-          #     transform: 'translate3d(-50%, -50%, 0) scale(.6) !important'
-          #     opacity: 0
-          #     pointerEvents: 'none'
-          #     transition: '.3s'
-          #
-          #   '&:hover':
-          #     transform: 'translate3d(-50%, -50%, 0) scale(1.05)'
-          #     transition: '.2s'
-          #
-          #   '&:active':
-          #     transform: 'translate3d(-50%, -50%, 0) scale(1)'
-          #     transition: '.1s'
+          '& > #play':
+            background: 'url(/img/icons/play_video.png) center/contain no-repeat'
+            width: 72
+            height: 72
+            position: 'absolute'
+            transform: 'translate3d(-50%, -50%, 0)'
+            top: '50%'
+            left: '50%'
+            transition: '.2s'
+
+            '&.hidden':
+              transform: 'translate3d(-50%, -50%, 0) scale(.6) !important'
+              opacity: 0
+              pointerEvents: 'none'
+              transition: '.3s'
+
+            '&:hover':
+              transform: 'translate3d(-50%, -50%, 0) scale(1.05)'
+              transition: '.2s'
+
+            '&:active':
+              transform: 'translate3d(-50%, -50%, 0) scale(1)'
+              transition: '.1s'
 
       '& > #left':
         padding: '0 2%'
