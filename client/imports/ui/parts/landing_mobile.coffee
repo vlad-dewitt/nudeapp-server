@@ -9,7 +9,7 @@ LandingMobile = class extends Component
     @state =
       menu: no
       ios_url: 'https://apps.apple.com/us/app/nude-app/id1281405417?l=ru&ls=1'
-      android_available: no
+      android_url: 'https://play.google.com/'
       playing_video: no
 
 
@@ -113,14 +113,12 @@ LandingMobile = class extends Component
                 <h2>App Store</h2>
               </div>
             </a>
-            <div id='right' className={ classNames 'inactive': not @state.android_available }>
-              <div id='icon'></div>
-              <h2>Google Play</h2>
-              {
-                if not @state.android_available
-                  <p>Coming soon</p>
-              }
-            </div>
+            <a href={ @state.android_url } target='_blank'>
+              <div id='right'>
+                <div id='icon'></div>
+                <h2>Google Play</h2>
+              </div>
+            </a>
           </div>
           <div id='left'>
            <div id='dirka'>
