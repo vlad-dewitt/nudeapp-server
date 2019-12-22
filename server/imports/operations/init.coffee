@@ -7,5 +7,8 @@ export default
         id: 'APP'
         config:
           'languages': [ 'en' ]
+          'ios_url': ''
+          'android_url': ''
+          'video_available': no
 
     APP

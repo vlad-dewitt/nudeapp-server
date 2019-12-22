@@ -23,7 +23,8 @@ Stylus = (Theme) =>
         display: 'block'
         width: '100%'
         height: '100%'
-        background: => if IS.mobile() then 'url(/img/pictures/bg.jpg) 65%/cover no-repeat' else 'url(/img/pictures/bg.jpg) center/cover no-repeat'
+        # background: => if IS.mobile() then 'url(/img/pictures/bg.jpg) 65%/cover no-repeat' else 'url(/img/pictures/bg.jpg) center/cover no-repeat'
+        background: 'linear-gradient(to bottom left, #E4ADAB, #F8DBC2)'
 
       '& > #root > #App':
         overflowX: => if IS.mobile() then 'hidden' else 'auto'

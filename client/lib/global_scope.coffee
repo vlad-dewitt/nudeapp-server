@@ -17,6 +17,8 @@ import Animations from '/client/imports/ui/animations/kit'
 import random from 'randomatic'
 import IS from 'is_js'
 
+import queryString from 'query-string'
+
 
 
 @React = React
@@ -43,5 +45,7 @@ import IS from 'is_js'
 
 @random = random
 @IS = IS
+
+@queryString = queryString
 
 @SimpleVars = {}

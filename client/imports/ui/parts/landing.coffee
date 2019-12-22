@@ -7,8 +7,9 @@ Landing = class extends Component
   constructor: (props) ->
     super props
     @state =
-      ios_url: 'https://apps.apple.com/us/app/nude-app/id1281405417?l=ru&ls=1'
-      android_url: 'https://play.google.com/'
+      ios_url: @props.app.config.ios_url
+      android_url: @props.app.config.android_url
+      video_available: @props.app.config.video_available
       playing_video: no
 
 
@@ -70,7 +71,10 @@ Landing = class extends Component
             <video id='nude_intro' width="100%" height="100%" controls={ no } poster='/img/pictures/poster.jpg'>
               <source src="/img/videos/nude_intro.mp4" type="video/mp4"/>
             </video>
-            <div id='play' className={ classNames 'cursor_pointer', 'hidden': @state.playing_video } onClick={ @play_video }></div>
+            {
+              if @state.video_available
+                <div id='play' className={ classNames 'cursor_pointer', 'hidden': @state.playing_video } onClick={ @play_video }></div>
+            }
           </div>
         </div>
         <div id='right'>
@@ -101,13 +105,13 @@ Landing = class extends Component
             </div>
           </div>
           <div id='bottom'>
-            <a href={ @state.ios_url } target='_blank'>
+            <a href={ @state.ios_url } target='_blank' className={ if @state.ios_url.length is 0 then 'inactive' }>
               <div id='left' className='cursor_pointer'>
                 <div id='icon'></div>
                 <h2>App Store</h2>
               </div>
             </a>
-            <a href={ @state.android_url } target='_blank'>
+            <a href={ @state.android_url } target='_blank' className={ if @state.android_url.length is 0 then 'inactive' }>
               <div id='right' className='cursor_pointer'>
                 <div id='icon'></div>
                 <h2>Google Play</h2>
@@ -117,22 +121,22 @@ Landing = class extends Component
         </div>
         <div id='footer'>
           <div className='partner'>
-            <img src='/img/pictures/p_1.png'/>
+            <img src='/img/pictures/par_1.png'/>
           </div>
           <div className='partner'>
-            <img src='/img/pictures/p_2.png'/>
+            <img src='/img/pictures/par_2.png'/>
           </div>
           <div className='partner'>
-            <img src='/img/pictures/p_3.png'/>
+            <img src='/img/pictures/par_3.png'/>
           </div>
           <div className='partner'>
-            <img src='/img/pictures/p_4.png'/>
+            <img src='/img/pictures/par_4.png'/>
           </div>
           <div className='partner'>
-            <img src='/img/pictures/p_5.png'/>
+            <img src='/img/pictures/par_5.png'/>
           </div>
           <div className='partner'>
-            <img src='/img/pictures/p_6.png'/>
+            <img src='/img/pictures/par_6.png'/>
           </div>
         </div>
       </div>
@@ -355,10 +359,6 @@ Shape = (theme) =>
               transform: 'scale(1)'
               transition: '.1s'
 
-            '&.inactive':
-              opacity: '.5'
-              pointerEvents: 'none'
-
             '& > #icon':
               position: 'absolute'
               transform: 'translate3d(0%, -50%, 0)'
@@ -387,6 +387,14 @@ Shape = (theme) =>
 
             '& > #icon':
               background: 'url(/img/icons/apple.png) center/contain no-repeat !important'
+
+          '& > a.inactive':
+            cursor: 'default'
+            pointerEvents: 'none'
+
+            '& > div':
+              opacity: '.5'
+              pointerEvents: 'none'
 
       '& > #footer':
         position: 'relative'
@@ -434,7 +442,7 @@ Shape = (theme) =>
           margin: '0'
           fontSize: '80%'
           fontWeight: '400'
-          color: '#C9C9C9'
+          color: 'white'
           position: 'relative'
           display: 'inline-block'
           paddingRight: '2em'

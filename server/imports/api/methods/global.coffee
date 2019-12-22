@@ -12,6 +12,9 @@ export default
     config =
       welcomeMessage: "Welcome!"
       language: App.config.languages[0]
+      ios_url: App.config.ios_url
+      android_url: App.config.android_url
+      video_available: App.config.video_available
 
     future.return
       code: 'S'
@@ -19,6 +22,17 @@ export default
       data: config
 
     future.wait()
+
+
+
+  setConfig: (what, value) =>
+    switch what
+      when 'ios_url'
+        APP.update({ id: 'APP' }, { $set: { 'config.ios_url': value } })
+      when 'android_url'
+        APP.update({ id: 'APP' }, { $set: { 'config.android_url': value } })
+      when 'video_available'
+        APP.update({ id: 'APP' }, { $set: { 'config.video_available': value } })
 
 
 
@@ -158,7 +172,7 @@ export default
         </div>
 
       Email.send
-        from: 'NudeApp <hello@nudeapp.co>'
+        from: 'NudeApp <hello@thenudeapp.com>'
         to: 'hello@hexa.systems'
         subject: 'Support Message'
         html: ReactDOM.renderToString template()
